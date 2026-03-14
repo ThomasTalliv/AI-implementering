@@ -209,6 +209,8 @@ def main():
 
     # ── Write output ──────────────────────────────────────────────────────────
     full = "\n".join(parts)
+    # Strip Obsidian %% comments %% (including CLAUDE: instructions)
+    full = re.sub(r'%%.*?%%', '', full, flags=re.DOTALL)
     # Collapse 4+ blank lines into 2
     full = re.sub(r'\n{4,}', '\n\n\n', full)
 
